@@ -1,22 +1,36 @@
 const express = require("express");
-const app = express();
+const path = require("path");
 const { open } = require("sqlite");
 const sqlite3 = require("sqlite3");
-const path = require("path");
-const dbpath = path.join(__dirname, "todoapplication.db");
+
+const app = express();
 app.use(express.json());
-const connetDBAndServer = async () => {
+const dbPath = path.join(__dirname, "todoapplication.db");
+
+let db = null;
+
+const initializeDBAndServer = async () => {
   try {
-    const db = await open({
-      filename: dbpath,
+    db = await open({
+      filename: dbPath,
       driver: sqlite3.Database,
     });
     app.listen(3005, () => {
-      console.log("Server is running");
+      console.log("Server Running at http://localhost:3005/");
     });
-  } catch (error) {
-    console.log("DB Error:${error.message()}");
+  } catch (e) {
+    console.log(`DB Error: ${e.message}`);
     process.exit(1);
   }
 };
-connetDBAndServer();
+initializeDBAndServer();
+
+// API 1
+
+app.get("/todos/", async (request, response) => {
+  const query = `
+    select * from todo
+    `;
+  const dbresponse = await db.all(query);
+  response.send(dbresponse);
+});
