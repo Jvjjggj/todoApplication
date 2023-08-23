@@ -1,9 +1,68 @@
 GET http://localhost:3005/todos/
 
-###
+### s1
 
 GET http://localhost:3005/todos/?priority=HIGH
 
-###
+### s2
 
 GET http://localhost:3005/todos/?status=TO%20DO
+
+### s3
+ 
+GET http://localhost:3005/todos/?priority=HIGH&status=IN%20PROGRESS
+
+### s4
+
+GET http://localhost:3005/todos/?search_q=Play
+
+###  s5
+
+GET http://localhost:3005/todos/10/
+
+### API 2
+
+POST http://localhost:3005/todos/
+Content-Type: application/json
+
+{
+  "id": 900,
+  "todo": "Finalize event theme",
+  "priority": "HIGH",
+  "status": "IN PROGRESS"
+}
+
+### API 3
+
+PUT http://localhost:3005/todos/10/
+Content-Type: application/json
+
+{
+    "status": "DONE"
+}
+
+### API 4 s2
+
+
+PUT http://localhost:3005/todos/10/
+Content-Type: application/json
+
+{
+    "priority":"HIGH"
+}
+
+### API 4 s3
+
+PUT http://localhost:3005/todos/10/
+Content-Type: application/json
+
+{
+    "todo":"Some task"
+}
+
+### API 4 completed
+
+DELETE http://localhost:3005/todos/10/
+
+### API 5
+
