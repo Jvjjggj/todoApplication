@@ -28,9 +28,16 @@ initializeDBAndServer();
 // API 1
 
 app.get("/todos/", async (request, response) => {
-  const query = `
+  const para1 = request.query;
+  if ("priority" in para1) {
+    response.send("para1");
+  } else if ("status" in para1) {
+    response.send(para1);
+  } else {
+    const query = `
     select * from todo
     `;
-  const dbresponse = await db.all(query);
-  response.send(dbresponse);
+    const dbresponse = await db.all(query);
+    response.send(dbresponse);
+  }
 });
