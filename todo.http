@@ -1,1 +1,9 @@
 GET http://localhost:3005/todos/
+
+###
+
+GET http://localhost:3005/todos/?priority=HIGH
+
+###
+
+GET http://localhost:3005/todos/?status=TO%20DO
