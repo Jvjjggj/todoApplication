@@ -1,68 +1,33 @@
-GET http://localhost:3005/todos/
+GET http://localhost:3016/todos/?status=TO%20DO
 
-### s1
+### API for TO DO  1
 
-GET http://localhost:3005/todos/?priority=HIGH
+GET http://localhost:3016/todos/?priority=HIGH
 
-### s2
+### API for priority  2
 
-GET http://localhost:3005/todos/?status=TO%20DO
+GET http://localhost:3016/todos/?priority=HIGH&status=IN%20PROGRESS
 
-### s3
- 
-GET http://localhost:3005/todos/?priority=HIGH&status=IN%20PROGRESS
+### API for both priority and status  3
 
-### s4
+GET http://localhost:3016/todos/?search_q=Buy
 
-GET http://localhost:3005/todos/?search_q=Play
+### API for search_q  4
 
-###  s5
+GET http://localhost:3016/todos/?category=WORK&status=DONE
 
-GET http://localhost:3005/todos/10/
+### API for category and status  5
 
-### API 2
+GET http://localhost:3016/todos/?category=HOME
 
-POST http://localhost:3005/todos/
-Content-Type: application/json
+### API for category 6
 
-{
-  "id": 900,
-  "todo": "Finalize event theme",
-  "priority": "HIGH",
-  "status": "IN PROGRESS"
-}
+GET http://localhost:3016/todos/?category=LEARNING&priority=HIGH
 
-### API 3
+### API for both category and priority  7
 
-PUT http://localhost:3005/todos/10/
-Content-Type: application/json
+GET http://localhost:3016/todos/1/
 
-{
-    "status": "DONE"
-}
+### API 2 get todo via todoId
 
-### API 4 s2
-
-
-PUT http://localhost:3005/todos/10/
-Content-Type: application/json
-
-{
-    "priority":"HIGH"
-}
-
-### API 4 s3
-
-PUT http://localhost:3005/todos/10/
-Content-Type: application/json
-
-{
-    "todo":"Some task"
-}
-
-### API 4 completed
-
-DELETE http://localhost:3005/todos/10/
-
-### API 5
-
+GET http://localhost:3016/agenda/?date=2021-12-12
