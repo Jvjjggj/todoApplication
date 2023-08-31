@@ -137,4 +137,93 @@ app.get("/todos/:todoId/", async (request, response) => {
 
 // API3
 
+app.get("/agenda/", async (request, response) => {
+  const { date } = request.query;
+  const query = `
+  select *
+  from 
+     todo
+  where
+      due_date="${date}"
+  ;`;
+  const dbresponse = await db.all(query);
+  response.send(dbresponse);
+});
+
+// API 4
+
+app.post("/todos/", async (request, response) => {
+  const { id, todo, priority, status, category, dueDate } = request.body;
+  const query = `
+  insert into
+      todo
+    (id,todo,priority,status,category,due_date)
+   values
+     (${id},"${todo}","${priority}","${status}","${category}","${dueDate}");`;
+  const dbresponse = await db.run(query);
+  response.send("Todo Successfully Added");
+});
+
+// API 5
+
+app.put("/todos/:todoId/", async (request, response) => {
+  const { todoId } = request.params;
+  const {
+    status = "",
+    priority = "",
+    todo = "",
+    category = "",
+    dueDate = "",
+  } = request.body;
+
+  if (status !== "") {
+    const query = `
+      update todo
+      set 
+        status="${status}"`;
+    const dbresponse = await db.run(query);
+    response.send("Status Updated");
+  } else if (priority !== "") {
+    const query = `
+      update todo
+      set 
+        priority="${priority}"`;
+    const dbresponse = await db.run(query);
+    response.send("Priority Updated");
+  } else if (todo !== "") {
+    const query = `
+      update todo
+      set 
+        todo="${todo}"`;
+    const dbresponse = await db.run(query);
+    response.send("Todo Updated");
+  } else if (category !== "") {
+    const query = `
+      update todo
+      set 
+        category="${category}"`;
+    const dbresponse = await db.run(query);
+    response.send("Category Updated");
+  } else if (dueDate !== "") {
+    const query = `
+      update todo
+      set 
+        due_date="${dueDate}"`;
+    const dbresponse = await db.run(query);
+    response.send("Due Date Updated");
+  }
+});
+
+// API 6
+app.delete("/todos/:todoId/", async (request, response) => {
+  const { todoId } = request.params;
+  const query = `
+  delete from
+     todo
+  where 
+     id=${todoId}`;
+  const dbresponse = await db.run(query);
+  response.send("Todo Deleted");
+});
 module.exports = app;
+
