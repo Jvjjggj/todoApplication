@@ -26,8 +26,76 @@ GET http://localhost:3016/todos/?category=LEARNING&priority=HIGH
 
 ### API for both category and priority  7
 
-GET http://localhost:3016/todos/1/
+GET http://localhost:3016/todos/2/
 
 ### API 2 get todo via todoId
 
 GET http://localhost:3016/agenda/?date=2021-12-12
+
+### API 3 get todo via due_date
+
+POST http://localhost:3016/todos/
+Content-Type: application/json
+
+{
+  "id": 6,
+  "todo": "Finalize event theme",
+  "priority": "LOW",
+  "status": "TO DO",
+  "category": "HOME",
+  "dueDate": "2021-02-22"
+}
+
+### API 4 posting the new todo
+
+PUT http://localhost:3016/todos/2/
+Content-Type: application/json
+
+{
+    "status": "DONE"
+}
+
+### API 5-1 status updated
+
+
+PUT http://localhost:3016/todos/2/
+Content-Type: application/json
+
+{
+    "priority": "HIGH"
+}
+
+### API 5-2 priority updated
+
+PUT http://localhost:3016/todos/2/
+Content-Type: application/json
+
+{
+      "todo": "Clean the garden"
+    }
+
+### API 5-3 todo updated
+
+PUT http://localhost:3016/todos/2/
+Content-Type: application/json
+
+{
+    "category": "LEARNING"
+}
+
+### API 5-4 categorytodo updated
+
+PUT http://localhost:3016/todos/2/
+Content-Type: application/json
+
+{
+      "dueDate": "2021-01-12"
+    }
+
+### API 5-5 due Date updated
+
+DELETE http://localhost:3016/todos/1/
+
+### API 6 delecte todo via id
+
+GET http://localhost:3016/todos/?priority="AVERAGE"
